@@ -4,6 +4,7 @@ const {
   auth,
   authFailed,
 } = require('./../auth');
+
 const controller = require('./controller');
 
 router.route('/signup')

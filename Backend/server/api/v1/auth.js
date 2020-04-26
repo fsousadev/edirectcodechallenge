@@ -31,7 +31,7 @@ const auth = (req, res, next) => {
   }
 };
 
-const signToken = (payload, expiresIn = '1h') => jwt.sign(payload, config.jwt.secret, {
+const signToken = (payload, expiresIn = '24h') => jwt.sign(payload, config.jwt.secret, {
   algorithm: 'HS256',
   expiresIn,
 });

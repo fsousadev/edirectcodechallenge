@@ -1,0 +1,38 @@
+<div class="project">
+  <div class="header">
+    <div class="tittle">
+      {{project.projectname}}
+    </div>
+    <div class="options">
+      <div class="edit">
+        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+      <div class="delete">
+        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="tasks-container">
+    <div class="todo">
+      <h3>To Do</h3>
+      <div class="tasks">
+        <app-task></app-task>
+        <ng-container *ngFor="let item of project.tasks">
+          <app-task></app-task>
+        </ng-container>
+      </div>
+    </div>
+    <div class="done"></div>
+    <div class="line"></div>
+    <div class="add">
+      <input [(ngModel)]="task.description" placeholder="Task" />
+      <button mat-raised-button color="primary" (click)="openDialog()">Add</button>
+    </div>
+  </div>
+
+</div>

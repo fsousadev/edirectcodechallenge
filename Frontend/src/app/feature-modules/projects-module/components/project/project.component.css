@@ -1,0 +1,48 @@
+.project {
+  border: 1px solid lightgray;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #efefef;
+  align-items: center;
+  padding: 3px;
+  border: 1px solid #efefef;
+}
+
+.tasks-container {
+  padding: 15px;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit, .delete {
+  /*margin-right: 10px;*/
+  cursor: pointer;
+  color: grey;
+}
+
+.tittle {
+  margin-left: 10px;
+}
+
+.add {
+  display: flex;
+  justify-content: space-between;
+}
+
+  .add input {
+    padding-left: 10px;
+    width: 70%;
+  }
+
+.line {
+  box-shadow: 1px sol;
+  border-top: 1px solid lightgrey;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

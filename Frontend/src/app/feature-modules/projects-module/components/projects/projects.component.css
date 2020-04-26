@@ -1,0 +1,33 @@
+.projects-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  margin-left: 2%;
+}
+
+.project-container, .new-project {
+  width: 30%;
+  margin-bottom: 25px;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.new-project {
+  background-color: #efefef;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #bfbfbf;
+}
+
+.new-project-child {
+  display: flex;
+  flex-flow: column;
+}
+
+  .new-project-child input {
+    height: 30px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+  }

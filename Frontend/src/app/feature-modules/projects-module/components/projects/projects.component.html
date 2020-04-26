@@ -1,0 +1,14 @@
+<div class="projects-container">
+  <ng-container *ngFor="let item of projects">
+    <div class="project-container">
+      <app-project [project]="item"></app-project>
+    </div>
+  </ng-container>
+  <div class="new-project">
+    <div class="new-project-child">
+      <h2>Create a new project</h2>
+      <input type="text" placeholder="Project name">
+      <button mat-raised-button color="primary">Create Project</button>
+    </div>
+  </div>
+</div>
