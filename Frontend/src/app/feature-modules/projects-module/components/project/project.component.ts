@@ -48,20 +48,22 @@ export class ProjectComponent implements OnInit {
       data: { task: this.task }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.tasksService.create(result).subscribe(res => {
-        this._snackBar.open("Task created with sucess!", "X", {
-          duration: 5000,
-          panelClass: ['green-snackbar']
+    dialogRef.afterClosed().subscribe((result: Task) => {
+      if (result && result.description && result.startdate) {
+        this.tasksService.create(result).subscribe(res => {
+          this._snackBar.open("Task created with sucess!", "X", {
+            duration: 5000,
+            panelClass: ['green-snackbar']
+          });
+          this.project.tasks.push(res)
+          this.task = new Task();
+        }, err => {
+          this._snackBar.open("Error creating Task!", "X", {
+            duration: 5000,
+            panelClass: ['red-snackbar']
+          });
         });
-        this.project.tasks.push(res)
-        this.task = new Task();
-      }, err => {
-        this._snackBar.open("Error creating Task!", "X", {
-          duration: 5000,
-          panelClass: ['red-snackbar']
-        });
-      });
+      }
     });
   }
 

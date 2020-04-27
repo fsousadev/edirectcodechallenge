@@ -47,7 +47,7 @@
     </div>
     <div class="line"></div>
     <div class="add">
-      <input [(ngModel)]="task.description" placeholder="Task" />
+      <input [(ngModel)]="task.description" placeholder="Task" (keydown.enter)="openDialog()"/>
       <button mat-raised-button color="primary" (click)="openDialog()">Add</button>
     </div>
   </div>

@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Backend",
+    "\\Backend\\server",
+    "\\Frontend\\src",
+    "\\Frontend\\src\\app",
+    "\\Frontend\\src\\app\\feature-modules",
+    "\\Frontend\\src\\app\\interceptors",
+    "\\Frontend\\src\\app\\models",
+    "\\Frontend\\src\\app\\services",
+    "\\Frontend\\src\\app\\shared"
+  ],
+  "SelectedNode": "\\Backend\\server",
+  "PreviewInSolutionExplorer": false
+}

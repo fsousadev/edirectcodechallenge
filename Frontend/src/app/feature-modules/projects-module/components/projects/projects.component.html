@@ -8,7 +8,7 @@
     <div class="new-project">
       <div class="new-project-child">
         <h2>Create a new project</h2>
-        <input type="text" placeholder="Project name" [(ngModel)]="project.projectname" (keydown.enter)="createProject()">
+        <input type="text" placeholder="Project name" [(ngModel)]="project.projectname" (keydown.enter)="project.projectname && createProject()">
         <button mat-raised-button color="primary" [disabled]="!project.projectname" (click)="createProject()">Create Project</button>
       </div>
     </div>
@@ -20,3 +20,5 @@
     <mat-spinner></mat-spinner>
   </div>
 </ng-template>
+
+
