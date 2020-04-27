@@ -6,14 +6,22 @@ const {
 } = mongoose;
 
 const fields = {
-    projectname: {
+    description: {
         type: String,
         required: true,
+    }, startdate: {
+        type: Date,
+    }, enddate: {
+        type: Date,
+    }, status: {
+        type: String,
+        enum: ['todo', 'done'],
+        default: ['todo']
     }, entitystatus: {
         type: String,
         enum: ['active', 'deleted'],
         default: ['active']
-    }, user_id: {
+    }, project_id: {
         type: String,
         required: true,
     }
@@ -24,4 +32,4 @@ const project = new Schema(fields, {
     timestamps: true,
 });
 
-module.exports = mongoose.model('project', project);
+module.exports = mongoose.model('task', project);

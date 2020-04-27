@@ -10,15 +10,15 @@ import { Task } from '../../../../models/task';
 })
 export class UpsertTaskDialogComponent implements OnInit {
 
-  project: Project = new Project();
   task: Task = new Task();
+  //now: Date = new Date();
 
   constructor(
     public dialogRef: MatDialogRef<UpsertTaskDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    this.project = this.data.project;
     this.task = this.data.task;
+    //this.task.startdate = new Date();
   }
 
   ngOnInit() {

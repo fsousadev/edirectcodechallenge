@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const usersRoutes = require('./users/routes');
 const projectsRoutes = require('./projects/routes');
-
+const taskRoutes = require('./tasks/routes');
 
 router.all("/*", function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -13,5 +13,6 @@ router.all("/*", function (req, res, next) {
 
 router.use('/users', usersRoutes);
 router.use('/projects', projectsRoutes);
+router.use('/tasks', taskRoutes);
 
 module.exports = router;

@@ -8,23 +8,37 @@ exports.signup = (req, res, next) => {
 
     const user = new User(body);
 
-    user.save()
-        .then((created) => {
-            const token = signToken({
-                id: created.id,
-            });
-
+    User.find({ email: user.email }, function (err, entity) {
+        if (err)
+            res.send(err);
+        if (entity.length > 0) {
+            res.status(403);
             res.json({
-                success: true,
-                item: created,
-                meta: {
-                    token,
-                },
+                success: false,
+                message: 'Email is already in use',
             });
-        })
-        .catch((error) => {
-            next(new Error(error));
-        });
+        } else {
+            user.save()
+                .then((created) => {
+                    const token = signToken({
+                        id: created.id,
+                    });
+
+                    res.json({
+                        success: true,
+                        item: created,
+                        meta: {
+                            token,
+                        },
+                    });
+                })
+                .catch((error) => {
+                    next(new Error(error));
+                });
+        }
+    });
+
+
 };
 
 exports.profile = (req, res, next) => {

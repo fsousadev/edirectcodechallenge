@@ -1,0 +1,13 @@
+.form > div {
+  margin-bottom: 10px;
+}
+
+.form input {
+  width: 90%;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}

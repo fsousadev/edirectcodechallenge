@@ -1,19 +1,19 @@
-<h1 mat-dialog-title>Create or update task</h1>
-<div mat-dialog-content>
+<h1 mat-dialog-title>Create task</h1>
+<div class="form" mat-dialog-content>
   <div class="description">
     <div>Description</div>
-    <input [(ngModel)]="task.description">
+    <input class="input-height" [(ngModel)]="task.description">
   </div>
   <div class="start">
     <div>Start Date</div>
-    <input type="date" />
+    <input class="input-height" type="date" [(ngModel)]="task.startdate" />
   </div>
   <div class="start">
     <div>End Date</div>
-    <input type="date" />
+    <input class="input-height" type="date" [(ngModel)]="task.enddate" />
   </div>
 </div>
-<div mat-dialog-actions>
+<div class="buttons-container" mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="task" cdkFocusInitial>Save</button>
+  <button mat-button [mat-dialog-close]="task" cdkFocusInitial [disabled]="!task.description || !task.startdate">Save</button>
 </div>

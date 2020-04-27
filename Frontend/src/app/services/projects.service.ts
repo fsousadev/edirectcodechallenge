@@ -28,5 +28,41 @@ export class ProjectsService {
         })
       )
   }
+
+  upsert(entity: Project): Observable<Project> {
+    if (entity._id != null) {
+      return this.create(entity);
+    } else {
+      return this.update(entity);
+    }
+  }
+
+  create(entity: Project): Observable<Project> {
+    let httpHeaders = new HttpHeaders({
+      "Content-Type": "application/json"
+    });
+    let headers = { headers: httpHeaders };
+
+    return this.http.post<Project>(`${environment.apiURL}/${this.serviceEndpoint}`, JSON.stringify(entity), headers).pipe(
+      catchError(error => {
+        return throwError(error);
+      })
+    );
+  }
+
+  update(entity: Project): Observable<Project> {
+    let httpHeaders = new HttpHeaders({
+      "Content-Type": "application/json"
+    });
+    let headers = { headers: httpHeaders };
+
+    return this.http.put<Project>(`${environment.apiURL}/${this.serviceEndpoint}/${entity._id}`, JSON.stringify(entity), headers).pipe(
+      catchError(error => {
+        return throwError(error);
+      })
+    );
+  }
+
+
 }
 

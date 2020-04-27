@@ -1,0 +1,28 @@
+<div class="auth-form-container">
+  <div class="auth-form">
+    <div class="email">
+      <input class="input-height required" placeholder="Email" type="text" [(ngModel)]="user.email"/>
+      <span class="required"></span>
+    </div>
+    <div class="password">
+      <input class="input-height required" placeholder="Passwork" type="password" [(ngModel)]="user.password"/>
+      <span class="required"></span>
+    </div>
+
+    <ng-container *ngIf="registerMode">
+      <div class="firstname">
+        <input class="input-height required" placeholder="First Name" type="text" [(ngModel)]="user.firstname"/>
+        <span class="required"></span>
+      </div>
+      <div class="lastname">
+        <input class="input-height required" placeholder="Last Name" type="text" [(ngModel)]="user.lastname"/>
+        <span class="required"></span>
+      </div>
+    </ng-container>
+
+    <div class="buttons-container">
+      <a mat-button (click)="register()">{{registerMode ? 'Login' : 'Register'}}</a>
+      <button mat-raised-button color="primary" [disabled]="!IsFormValid()" (click)="connect()">{{registerMode ? 'Register' : 'Login'}}</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+.todo, .blue {
+  color: blue;
+}
+
+.red {
+  color: red;
+}
+
+.done {
+  color: black;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.strike {
+  text-decoration: line-through;
+}
+
+.checks {
+  margin-right: 10px;
+}
+
+.task-content {
+  display: flex;
+  align-content: center;
+}

@@ -1,15 +1,20 @@
 <div class="project">
   <div class="header">
     <div class="tittle">
-      {{project.projectname}}
+      <ng-container *ngIf="isInEditMode; else title">
+        <input #projectDescription class="project-description" type="text" [(ngModel)]="project.projectname" (focusout)="edit()" />
+      </ng-container>
+      <ng-template #title>
+        <div>{{project.projectname}}</div>
+      </ng-template>
     </div>
     <div class="options">
-      <div class="edit">
+      <div class="edit" (click)="setIsInEditMode(true,projectDescription)">
         <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
           <mat-icon>edit</mat-icon>
         </button>
       </div>
-      <div class="delete">
+      <div class="delete" (click)="delete()">
         <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
           <mat-icon>delete</mat-icon>
         </button>
@@ -18,16 +23,28 @@
   </div>
 
   <div class="tasks-container">
-    <div class="todo">
-      <h3>To Do</h3>
-      <div class="tasks">
-        <app-task></app-task>
-        <ng-container *ngFor="let item of project.tasks">
-          <app-task></app-task>
+    <div class="tasks">
+      <div class="todo">
+        <ng-container *ngIf="getTodoTasks()?.length > 0">
+          <h3>To Do</h3>
+          <div class="tasks">
+            <ng-container *ngFor="let item of project.tasks">
+              <app-task *ngIf="!item.status || item.status=='todo'" [task]="item" (onDelete)="deleteTask($event)" (onUpdate)="updateTask($event)"></app-task>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+      <div class="done">
+        <ng-container *ngIf="getDoneTasks()?.length > 0">
+          <h3>Done</h3>
+          <div class="tasks">
+            <ng-container *ngFor="let item of project.tasks">
+              <app-task *ngIf="item.status=='done'" [task]="item" [done]="true" (onDelete)="deleteTask($event)" (onUpdate)="updateTask($event)"></app-task>
+            </ng-container>
+          </div>
         </ng-container>
       </div>
     </div>
-    <div class="done"></div>
     <div class="line"></div>
     <div class="add">
       <input [(ngModel)]="task.description" placeholder="Task" />

@@ -1,1 +1,11 @@
-<p>task works!</p>
+<div [ngClass]="{ 'todo' : !done, 'done' : done, 'task': true, 'blue': !task.enddate || task.enddate > now, 'red': task.enddate < now }" class="task" (mouseover)="hover=true" (mouseleave)="hover=false">
+  <div class="task-content" [matTooltipDisabled]="!task.enddate" [matTooltip]="task.enddate | date:'MMM d, y'" (click)="update()">
+    <input class="checks" type="checkbox" name="{{task._id}}" id="{{task._id}}" [checked]="done" />
+    <label [ngClass]="{ 'strike' : done}" for="{{task._id}}">{{task.description}}</label>
+  </div>
+  <div *ngIf="hover && !done" (click)="delete()">
+    <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>

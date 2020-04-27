@@ -17,6 +17,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UpsertTaskDialogComponent } from './feature-modules/projects-module/components/upsert-task-dialog/upsert-task-dialog.component';
 import { FormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { UpsertProjectDialogComponent } from './feature-modules/projects-module/components/upsert-project-dialog/upsert-project-dialog.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AuthComponent } from './shared/auth/auth.component';
+import { HeaderComponent } from './shared/header/header.component';
 
 @NgModule({
   declarations: [
@@ -24,10 +30,16 @@ import { FormsModule } from '@angular/forms';
     ProjectComponent,
     TaskComponent,
     ProjectsComponent,
-    UpsertTaskDialogComponent
+    UpsertTaskDialogComponent,
+    UpsertProjectDialogComponent,
+    AuthComponent,
+    HeaderComponent
   ],
   entryComponents: [UpsertTaskDialogComponent],
   imports: [
+    MatProgressSpinnerModule,
+    MatTooltipModule,
+    MatSnackBarModule,
     FormsModule,
     MatDialogModule,
     MatIconModule,
@@ -35,8 +47,9 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
-      //{ path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: AuthComponent, pathMatch: 'full' },
       { path: 'projects', component: ProjectsComponent },
+      { path: 'auth', component: AuthComponent },
     ]),
     StoreModule.forRoot({
       //todos: TodoReducer,
