@@ -5,20 +5,23 @@ const config = require('./../../config');
 
 const auth = (req, res, next) => {
     const token = req.body.token || req.query.token || req.headers.authorization;
+    console.log(token);
     if (token) {
-        jwt.verify(token, config.jwt.secret, (err, decoded) => {
-            if (err) {
-                const message = 'Unauthorized';
-                logger.warn(message);
-                res.status(401);
-                res.json({
-                    success: false,
-                    message,
-                });
-            } else {
-                req.decoded = decoded;
-                next();
-            }
+        var at_validation = new AccessTokenHandler({
+            authority: 'https://authserver-fsousa.azurewebsites.net',
+            apiName: 'web_api'
+        });
+
+        at_validation.Handle(token).then(res => {
+            next();
+        }).catch(err => {
+            const message = 'Unauthorized';
+            logger.warn(message);
+            res.status(401);
+            res.json({
+                success: false,
+                message,
+            });
         });
     } else {
         const message = 'Forbidden';
