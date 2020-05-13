@@ -5,7 +5,7 @@ const { auth, } = require('./../auth');
 const controller = require('./controller');
 
 router.route('/')
-    //.get(auth, controller.list)
+    .get(auth, controller.list)
     .post(auth, controller.validate, controller.create);
 
 router.route('/:id')

@@ -72,17 +72,17 @@ exports.validate = function (req, res, next) {
         next();
 };
 
-//exports.list = function (req, res) {
-//    const { decoded } = req;
-//    const { id } = decoded;
-//    Entity.find({
-//        user_id: id, entitystatus: 'active'
-//    }, function (err, entity) {
-//        if (err)
-//            res.send(err);
-//        res.json(entity);
-//    });
-//};
+exports.list = function (req, res) {
+    const { decoded } = req;
+    console.log(decoded);   
+    Entity.find({
+        entitystatus: 'active'
+    }, function (err, entity) {
+        if (err)
+            res.send(err);
+        res.json(entity);
+    });
+};
 
 //exports.read = function (req, res) {
 //    Entity.findById(req.params.id, function (err, entity) {
