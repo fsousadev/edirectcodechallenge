@@ -1,20 +1,36 @@
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0 //DANGER: remove
 const jwt = require('jsonwebtoken');
 const logger = require('winston');
 
 const config = require('./../../config');
+const { AccessTokenHandler } = require('node-accesstoken-validation');
+
+const Entity = require('./users/model');
 
 const auth = (req, res, next) => {
     const token = req.body.token || req.query.token || req.headers.authorization;
     console.log(token);
     if (token) {
         var at_validation = new AccessTokenHandler({
-            authority: 'https://authserver-fsousa.azurewebsites.net',
-            apiName: 'web_api'
+            //authority: 'https://authserver-fsousa.azurewebsites.net',
+            //apiName: 'web_api'
+            authority: 'https://localhost:5001',
+            apiName: 'web_api_resource',
         });
 
         at_validation.Handle(token).then(res => {
-            next();
+            Entity.find({
+                email: res.Identifier
+            }).lean().exec(async function (err, entity) {
+                if (err)
+                    res.send(err);
+                req.decoded = res;
+                req.decoded.id = entity[0]._id;
+                console.log(req.decoded);
+                next();
+            });
         }).catch(err => {
+            console.log(err);
             const message = 'Unauthorized';
             logger.warn(message);
             res.status(401);

@@ -1,5 +1,9 @@
 # EDirect Code Challenge
 
+This branch is intended only for playing with [Auth Server](https://github.com/fsousadev/AuthServer) meaning security measures and good pratices are not being taken so deployemnt should not happen.
+
+-----------------------------------------------------------------------------------------------------------
+
 Please, follow the next instructions:
  
 1. Go to directories Frontend and Backend and run `npm i`
