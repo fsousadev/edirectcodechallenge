@@ -4,7 +4,14 @@
 
 export const environment = {
   production: false,
-  apiURL: 'http://localhost:3001/api'
+  apiURL: 'http://localhost:3001/api',
+  authserver: {
+    authority: 'https://localhost:5001',
+    callback: 'http://localhost:4200/callback',
+    scopes: [
+      'web_api'
+    ]
+  }
 };
 
 /*

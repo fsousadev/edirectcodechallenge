@@ -23,6 +23,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AuthComponent } from './shared/auth/auth.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { CallbackComponent } from './shared/auth/callback/callback.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { HeaderComponent } from './shared/header/header.component';
     UpsertTaskDialogComponent,
     UpsertProjectDialogComponent,
     AuthComponent,
-    HeaderComponent
+    HeaderComponent,
+    CallbackComponent
   ],
   entryComponents: [UpsertTaskDialogComponent],
   imports: [
@@ -50,6 +52,7 @@ import { HeaderComponent } from './shared/header/header.component';
       { path: '', component: AuthComponent, pathMatch: 'full' },
       { path: 'projects', component: ProjectsComponent },
       { path: 'auth', component: AuthComponent },
+      { path: 'callback', component: CallbackComponent },
     ]),
     StoreModule.forRoot({
       //todos: TodoReducer,

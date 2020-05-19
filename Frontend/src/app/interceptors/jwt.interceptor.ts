@@ -21,7 +21,7 @@ export class JwtInterceptor implements HttpInterceptor {
     if (!request.url.includes('Users') && token) {
       request = request.clone({
         headers: request.headers
-          .set('Authorization', token)
+          .set('Authorization', `Bearer ${token}`)
           .set('Content-Type', 'application/json')
       });
     }

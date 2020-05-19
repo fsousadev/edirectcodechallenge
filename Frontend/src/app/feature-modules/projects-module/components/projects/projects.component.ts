@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Project } from '../../../../models/project';
 import { ProjectsService } from '../../../../services/projects.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { finalize } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.css']
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent implements OnInit, OnDestroy {
 
   projects: Project[] = [];
   project: Project = new Project();
   isLoading: boolean = false;
+  subs: Subscription = new Subscription();
 
   constructor(
     private projectsService: ProjectsService,
@@ -22,10 +24,16 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
-    this.projectsService.getByUserId(null)
-      .pipe(
-        finalize(() => this.isLoading = false)
-      ).subscribe(res => this.projects = res);
+    this.subs.add(
+      this.projectsService.getByUserId(null)
+        .pipe(
+          finalize(() => this.isLoading = false)
+        ).subscribe(res => this.projects = res)
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 
   createProject() {
