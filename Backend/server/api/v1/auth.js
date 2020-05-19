@@ -12,10 +12,8 @@ const auth = (req, res, next) => {
     console.log(token);
     if (token) {
         var at_validation = new AccessTokenHandler({
-            //authority: 'https://authserver-fsousa.azurewebsites.net',
-            //apiName: 'web_api'
-            authority: 'https://localhost:5001',
-            apiName: 'web_api_resource',
+            authority: config.authserver.authority,
+            apiName: config.authserver.audience,
         });
 
         at_validation.Handle(token).then(res => {
